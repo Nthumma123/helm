@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx 
+  #these labels are replicaset labels 
+  labels:
+    project: roboshop
+    purpose: rs-demo
+    tier: frontend
+    component: frontend
+    environment: dev 
+
+spec:
+  replicas: {{ .Values.deployment.replicas}}
+  selector:
+  #using these labels replicaset will select the pods to which it will route the traffic. These are called selector labels. These are used by replicaset to select the pods to which it will route the traffic. These are used by replicaset to create pods.
+    matchLabels:
+      project: roboshop
+      purpose: rs-demo
+      tier: frontend
+      component: frontend
+      environment: dev
+# This is pod definition. This is called pod template. This is used by replicaset to create pods.
+  #pod is subset of replicaset 
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        purpose: rs-demo
+        tier: frontend
+        component: frontend
+        environment: dev
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:{{ .Values.image.imageversion}}
+        
