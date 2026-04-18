@@ -1,4 +1,4 @@
-values.yml -> We can maintain placholder values here
+values.yml -> We can maintain placeholder values here
 templates/ -> all k8s manifest files are with placeholders
 
 
@@ -24,7 +24,7 @@ helm history
 
 helm rollback nginx 1 # revision 1
 
-if we have specific values to dev/prod as values-prod.yml
+If we have specific values to dev/prod as values-prod.yml
 
 helm upgrade --install nginx -f values-prod.yml .
 
